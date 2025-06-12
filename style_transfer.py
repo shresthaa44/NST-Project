@@ -1,4 +1,4 @@
 def hello_nst():
-    print("NST project running!")
+    print("NST project runningggg")
 
 hello_nst()
