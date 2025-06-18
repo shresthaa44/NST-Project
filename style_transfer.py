@@ -4,4 +4,4 @@ def hello_nst():
 hello_nst()
 print("yoyo sup")
 print("hii")
-print("hellooo")
+print("helloo") 
