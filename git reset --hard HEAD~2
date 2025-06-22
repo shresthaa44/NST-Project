@@ -1,0 +1,193 @@
+[33mcommit 057771a39221f1da246c9398f882d04e54d7a800[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mpiyush-[m[33m)[m
+Author: Shrestha Gupta <shresthagupta28@gmail.com>
+Date:   Sun Jun 22 14:09:19 2025 +0530
+
+    Update utils.py
+
+[33mcommit a3d6cb44a26f14089b496cd9e9201049f8257e5a[m[33m ([m[1;31morigin/piyush-[m[33m)[m
+Author: Shrestha Gupta <shresthagupta28@gmail.com>
+Date:   Sat Jun 21 20:13:58 2025 +0530
+
+    utils check
+
+[33mcommit 212f4d776803da6be86273e76a15de031b4620fb[m
+Author: Shrestha Gupta <shresthagupta28@gmail.com>
+Date:   Sat Jun 21 19:04:33 2025 +0530
+
+    re
+
+[33mcommit cb7996f26d7595c6255f1588f73990906b0db7e9[m
+Author: Shrestha Gupta <shresthagupta28@gmail.com>
+Date:   Sat Jun 21 02:13:04 2025 +0530
+
+    just ran thru the code
+
+[33mcommit 0d728619acf2ef8f13c65595d36de70ecd7beeef[m
+Author: Shrestha Gupta <shresthagupta28@gmail.com>
+Date:   Sat Jun 21 01:42:58 2025 +0530
+
+    Update Basic Style Transfer Model.ipynb
+
+[33mcommit 2a941ac08eeb176985f1414d31b30e87112d6f63[m
+Author: piyushh-pathakk <pathakpiyush.416@gmail.com>
+Date:   Fri Jun 20 02:39:15 2025 +0530
+
+    just some imports
+
+[33mcommit 289a1a65a7b1716bacb6beb5d0380e9fd4e7f8d8[m
+Merge: 335e110 c684019
+Author: piyushh-pathakk <pathakpiyush.416@gmail.com>
+Date:   Fri Jun 20 02:32:03 2025 +0530
+
+    Merge branch 'piyush-' of https://github.com/shresthaa44/NST-Project into piyush-
+
+[33mcommit 335e1104c9d3f4981e113f40dc951284735cad0e[m
+Author: piyushh-pathakk <pathakpiyush.416@gmail.com>
+Date:   Fri Jun 20 02:31:58 2025 +0530
+
+    just created
+
+[33mcommit 4895d4115a52b325a9578a360becc29047a921f2[m
+Author: piyushh-pathakk <pathakpiyush.416@gmail.com>
+Date:   Fri Jun 20 02:31:52 2025 +0530
+
+    video_utils
+    
+    1️⃣ Creates a video from images saved in results_path (like PNGs).
+    
+    2️⃣ Figures out how many images are there, and builds the correct image filename pattern (%04d.png etc).
+    
+    3️⃣ Uses FFmpeg (command-line tool) to stitch images into a video — at 30 FPS — saves as out.mp4.
+    
+    4️⃣ If FFmpeg is not installed → it prints a warning.
+    
+    5️⃣ All happens automatically — no manual video editing needed!
+
+[33mcommit 8ab125d852d8ee989bcaf3ab7b82fde444c3ca7d[m
+Author: piyushh-pathakk <pathakpiyush.416@gmail.com>
+Date:   Fri Jun 20 02:28:08 2025 +0530
+
+    something
+
+[33mcommit c684019dd3841c3210c5f8c73bd4149a8f4b8956[m
+Author: piyushh-pathakk <pathakpiyush.416@gmail.com>
+Date:   Fri Jun 20 02:27:39 2025 +0530
+
+    Delete style_transfer.py
+
+[33mcommit 83bbf08dc36900f913b396cfdff737e71a109c1b[m
+Author: piyushh-pathakk <pathakpiyush.416@gmail.com>
+Date:   Fri Jun 20 02:27:27 2025 +0530
+
+    Delete profile.jfif
+
+[33mcommit 865eb738879734a6518d5310c35f37b7f0c946e4[m
+Author: piyushh-pathakk <pathakpiyush.416@gmail.com>
+Date:   Fri Jun 20 02:26:28 2025 +0530
+
+    Update utils_understand.ipynb
+
+[33mcommit 22bcb51297be0ca1695094971d28013b31e4918b[m
+Author: piyushh-pathakk <pathakpiyush.416@gmail.com>
+Date:   Fri Jun 20 02:24:04 2025 +0530
+
+    Update utils_understand.ipynb
+
+[33mcommit 97a7d2a8e24bf516b22c7940a550192ada490ec9[m
+Author: piyushh-pathakk <pathakpiyush.416@gmail.com>
+Date:   Fri Jun 20 02:19:35 2025 +0530
+
+    Utils
+    
+    Utils.py has the code which could be later imported in other file.
+    in Utils_understand.ipynb i have exxplained each and every fn properly whatits function is
+
+[33mcommit 2d1786cf0530621df4f75063239f7efe76789741[m
+Author: piyushh-pathakk <pathakpiyush.416@gmail.com>
+Date:   Thu Jun 19 16:36:41 2025 +0530
+
+    tils stuff
+
+[33mcommit bf43d1d1b5607cc8a19639244a3f9a8292d36942[m
+Author: piyushh-pathakk <pathakpiyush.416@gmail.com>
+Date:   Thu Jun 19 16:35:42 2025 +0530
+
+    utils
+
+[33mcommit dd86aa8bcd122646a9dfcf4a1bd62f8671cafd6d[m
+Author: piyushh-pathakk <pathakpiyush.416@gmail.com>
+Date:   Thu Jun 19 16:26:08 2025 +0530
+
+    VGG
+    
+    renamed a basic model and in models you can find vgg16 and 19
+
+[33mcommit bb8288b676219373b4465a657833fb2143845816[m
+Author: piyushh-pathakk <pathakpiyush.416@gmail.com>
+Date:   Thu Jun 19 11:41:02 2025 +0530
+
+    updated the photo
+
+[33mcommit dc729e64db17ac3daf3e8e5ee64d8a43a5620693[m
+Author: piyushh-pathakk <pathakpiyush.416@gmail.com>
+Date:   Thu Jun 19 11:37:48 2025 +0530
+
+    Create portrait-of-a-mid-adult-man-with-beard.webp
+
+[33mcommit 728d73d4d779151e0a2cdfa25a1ed755dd81a3da[m
+Author: piyushh-pathakk <pathakpiyush.416@gmail.com>
+Date:   Thu Jun 19 11:37:21 2025 +0530
+
+    Create NST1.ipynb
+
+[33mcommit f4e9b4d9b03a2b6f4e9646e366443b874a7064f2[m
+Author: piyushh-pathakk <pathakpiyush.416@gmail.com>
+Date:   Wed Jun 18 19:38:12 2025 +0530
+
+    basic learning
+    
+    I used a pretrained model to simply take 2 images a style anf content and ceate a generated image.
+    I have used arbitrary-image-stylization-v1
+    So its not the mai project just uploading what I learned
+
+[33mcommit ca92a332ae2254259aa5f7e79ef038f770b0aa7e[m
+Author: piyushh-pathakk <pathakpiyush.416@gmail.com>
+Date:   Tue Jun 17 21:29:22 2025 +0530
+
+    Update style_transfer.py
+
+[33mcommit f8ba2ddc596285449f09bb1b8f70ac276e18ae44[m
+Author: piyushh-pathakk <pathakpiyush.416@gmail.com>
+Date:   Tue Jun 17 21:28:30 2025 +0530
+
+    Update style_transfer.py
+
+[33mcommit 1ea4ff8f4f54a99c782e0d992a165bfb1209c3cd[m
+Author: piyushh-pathakk <pathakpiyush.416@gmail.com>
+Date:   Tue Jun 17 21:27:18 2025 +0530
+
+    Update style_transfer.py
+
+[33mcommit 7c559d0575aff19573addc67bae9da7a3897ab73[m
+Author: Shrestha Gupta <shresthagupta28@gmail.com>
+Date:   Tue Jun 17 17:54:41 2025 +0530
+
+    shresthas update
+
+[33mcommit 9dbe50e7be041c54be02f5df6c3db8aac400bbef[m
+Author: Shrestha Gupta <shresthagupta28@gmail.com>
+Date:   Thu Jun 12 22:03:59 2025 +0530
+
+    checking
+
+[33mcommit 50cffe07a681a4dbdc890f52da6fc957598ad58f[m
+Author: Shrestha Gupta <shresthagupta28@gmail.com>
+Date:   Thu Jun 12 21:58:25 2025 +0530
+
+    checking
+
+[33mcommit e2e3fcb20c398fdebfc5a698df039d27524d0b7c[m
+Author: Shrestha Gupta <shresthagupta28@gmail.com>
+Date:   Thu Jun 12 21:53:45 2025 +0530
+
+    Initial commit: added style_transfer script
