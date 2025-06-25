@@ -108,63 +108,69 @@ def neural_style_transfer(config):
     return dump_path
 
 def run_gui():
-    st.set_page_config(page_title="Neural Style Transfer", layout="wide")
-    st.title("🎨 Neural Style Transfer - Echo Style")
+ st.set_page_config(page_title="Neural Style Transfer App", layout="centered")
+st.set_page_config(page_title="Neural Style Transfer App", layout="centered")
+st.title("🎨 Neural Style Transfer")
+st.markdown("Stylize your images using deep learning with VGG19.")
 
-    content_file = st.file_uploader("Upload Content Image", type=["jpg", "png"])
-    style_file = st.file_uploader("Upload Style Image", type=["jpg", "png"])
+st.sidebar.header("🪄 Settings")
+image_height = st.sidebar.slider("Image Height", min_value=128, max_value=720, value=400, step=8)
+content_weight = st.sidebar.slider("Content Weight", 1e3, 1e6, value=1e5, step=1e3, format="%.0f")
+style_weight = st.sidebar.slider("Style Weight", 1e3, 1e6, value=3e4, step=1e3, format="%.0f")
+tv_weight = st.sidebar.slider("Total Variation Weight", 0.0, 10.0, value=1.0, step=0.1)
+optimizer = st.sidebar.selectbox("Optimizer", options=["lbfgs", "adam"], index=0)
+init_method = st.sidebar.selectbox("Init Method", options=["random", "content", "style"], index=1)
 
-    model = st.selectbox("Model", ["vgg19", "vgg16"])
-    optimizer = st.selectbox("Optimizer", ["adam", "lbfgs"])
-    init_method = st.selectbox("Initialization Method", ["random", "content", "style"])
+st.markdown("---")
 
-    height = st.slider("Image Height", 256, 800, 400, step=64)
-    cw = st.number_input("Content Weight", value=1e5)
-    sw = st.number_input("Style Weight", value=3e4)
-    tvw = st.number_input("Total Variation Weight", value=1.0)
+col1, col2 = st.columns(2)
+with col1:
+    content_file = st.file_uploader("Upload Content Image", type=["jpg", "jpeg", "png"], key="content")
+with col2:
+    style_file = st.file_uploader("Upload Style Image", type=["jpg", "jpeg", "png"], key="style")
 
-    if content_file and style_file and st.button("Generate Stylized Image"):
-        with tempfile.TemporaryDirectory() as td:
-            cpath = os.path.join(td, "content.jpg")
-            spath = os.path.join(td, "style.jpg")
-            with open(cpath, "wb") as f: f.write(content_file.read())
-            with open(spath, "wb") as f: f.write(style_file.read())
+run_button = st.button("✨ Stylize")
 
-            st.image(cpath, caption="Content Image", use_column_width=True)
-            st.image(spath, caption="Style Image", use_column_width=True)
+if run_button:
+    if not content_file or not style_file:
+        st.warning("Please upload both content and style images.")
+    else:
+        with st.spinner("Processing image with Neural Style Transfer..."):
+            os.makedirs("data/content-images", exist_ok=True)
+            os.makedirs("data/style-images", exist_ok=True)
+
+            content_img_path = f"data/content-images/{content_file.name}"
+            style_img_path = f"data/style-images/{style_file.name}"
+
+            with open(content_img_path, "wb") as f:
+                f.write(content_file.read())
+            with open(style_img_path, "wb") as f:
+                f.write(style_file.read())
 
             config = {
-                "content_img_name": "content.jpg",
-                "style_img_name": "style.jpg",
-                "content_images_dir": td,
-                "style_images_dir": td,
-                "output_img_dir": td,
-                "img_format": (4, ".jpg"),
-                "height": height,
-                "content_weight": cw,
-                "style_weight": sw,
-                "tv_weight": tvw,
+                "content_img_name": content_file.name,
+                "style_img_name": style_file.name,
+                "height": image_height,
+                "content_weight": content_weight,
+                "style_weight": style_weight,
+                "tv_weight": tv_weight,
                 "optimizer": optimizer,
-                "model": model,
+                "model": "vgg19",
                 "init_method": init_method,
-                "saving_freq": -1
+                "saving_freq": -1,
+                "content_images_dir": "data/content-images",
+                "style_images_dir": "data/style-images",
+                "output_img_dir": "data/output-images",
+                "img_format": (4, ".jpg"),
             }
 
-            st.info("Running style transfer… this may take a few minutes ⏳")
-            torch.cuda.empty_cache()
-            out_dir = neural_style_transfer(config)
+            result_path = neural_style_transfer(config)
+            final_image_path = os.path.join(result_path, "final.jpg")
 
-            files = sorted(os.listdir(out_dir))
-            last = files[-1]
-            img = cv2.imread(os.path.join(out_dir, last))
-            img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-            st.image(img, caption="🎉 Stylized Output", use_column_width=True)
-
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--gui", action="store_true", help="Run Streamlit GUI")
-    args, _ = parser.parse_known_args()
-    if args.gui:
-        run_gui()
-    else:
-        print("Please run with --gui to launch the interface")
+            if os.path.exists(final_image_path):
+                output_image = cv.imread(final_image_path)[..., ::-1]  # BGR to RGB
+                st.image(output_image, caption="Stylized Image", use_column_width=True)
+                with open(final_image_path, "rb") as img_file:
+                    st.download_button("💾 Download Image", data=img_file, file_name="stylized_output.jpg", mime="image/jpeg")
+            else:
+                st.error("Stylized image could not be generated. Please check your code or inputs.")
