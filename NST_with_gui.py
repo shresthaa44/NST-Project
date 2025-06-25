@@ -109,7 +109,7 @@ def neural_style_transfer(config):
 
 def run_gui():
     st.set_page_config(page_title="Neural Style Transfer", layout="wide")
-    st.title("🎨 Neural Style Transfer - Streamlit GUI")
+    st.title("🎨 Neural Style Transfer - Echo Style")
 
     content_file = st.file_uploader("Upload Content Image", type=["jpg", "png"])
     style_file = st.file_uploader("Upload Style Image", type=["jpg", "png"])
