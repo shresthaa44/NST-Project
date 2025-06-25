@@ -10,7 +10,7 @@ import argparse
 
 import streamlit as st
 import tempfile
-import cv2
+import cv2 as cv
 
 def build_loss(neural_net, optimizing_img, target_representations, content_feature_maps_index, style_feature_maps_indices, config):
     target_content_representation = target_representations[0]
