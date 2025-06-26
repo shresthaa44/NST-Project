@@ -104,7 +104,14 @@ def neural_style_transfer(config):
             cnt += 1
             return total_loss
         optimizer.step(closure)
-
+        
+    with torch.no_grad(): #modified
+     final_output = optimizing_img.clone().detach().cpu().squeeze().numpy()
+     final_output = final_output.transpose(1, 2, 0)
+     final_output = np.clip(final_output, 0, 255).astype(np.uint8)
+     final_output_bgr = cv.cvtColor(final_output, cv.COLOR_RGB2BGR)
+     final_image_path = os.path.join(dump_path, "final.jpg")
+     cv.imwrite(final_image_path, final_output_bgr)
     return dump_path
 
 def run_gui():
