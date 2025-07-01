@@ -41,7 +41,7 @@ def make_tuning_step(neural_net, optimizer, target_representations, content_feat
         return total_loss, content_loss, style_loss, tv_loss
     return tuning_step
 
-def neural_style_transfer(config):
+def neural_style_transfer(config):streamlit run NST_with_gui.py -- --gui
     content_img_path = os.path.join(config['content_images_dir'], config['content_img_name'])
     style_img_path = os.path.join(config['style_images_dir'], config['style_img_name'])
 
