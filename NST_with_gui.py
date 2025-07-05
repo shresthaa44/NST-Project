@@ -105,14 +105,19 @@ def neural_style_transfer(config):
             return total_loss
         optimizer.step(closure)
         
-    with torch.no_grad(): #modified
+    with torch.no_grad():
      final_output = optimizing_img.clone().detach().cpu().squeeze().numpy()
      final_output = final_output.transpose(1, 2, 0)
+
+     IMAGENET_MEAN_255 = np.array([123.675, 116.28, 103.53])
+     final_output = final_output + IMAGENET_MEAN_255
      final_output = np.clip(final_output, 0, 255).astype(np.uint8)
+
      final_output_bgr = cv.cvtColor(final_output, cv.COLOR_RGB2BGR)
      final_image_path = os.path.join(dump_path, "final.jpg")
      cv.imwrite(final_image_path, final_output_bgr)
-    return dump_path
+     
+    return dump_path, optimizing_img
 
 def run_gui():
  st.set_page_config(page_title="Neural Style Transfer App", layout="centered")
@@ -171,13 +176,22 @@ if run_button:
                 "img_format": (4, ".jpg"),
             }
 
-            result_path = neural_style_transfer(config)
+            result_path, final_tensor = neural_style_transfer(config)
             final_image_path = os.path.join(result_path, "final.jpg")
 
             if os.path.exists(final_image_path):
-                output_image = cv.imread(final_image_path)[..., ::-1]  # BGR to RGB
-                st.image(output_image, caption="Stylized Image", use_column_width=True)
-                with open(final_image_path, "rb") as img_file:
-                    st.download_button("💾 Download Image", data=img_file, file_name="stylized_output.jpg", mime="image/jpeg")
+              # Read tensor instead of OpenCV image for better color
+              with torch.no_grad():
+               final_img_tensor = final_tensor.clone().detach().cpu().squeeze().numpy()
+               final_img_tensor = final_img_tensor.transpose(1, 2, 0)
+               IMAGENET_MEAN_255 = np.array([123.675, 116.28, 103.53])
+               final_img_tensor = final_img_tensor + IMAGENET_MEAN_255
+               final_img_tensor = np.clip(final_img_tensor, 0, 255).astype(np.uint8)
+
+              st.image(final_img_tensor, caption="Stylized Image", use_column_width=True)
+
+            # Also providing a download button
+              with open(final_image_path, "rb") as img_file:
+               st.download_button("💾 Download Image", data=img_file, file_name="stylized_output.jpg", mime="image/jpeg")
             else:
-                st.error("Stylized image could not be generated. Please check your code or inputs.")
+               st.error("Stylized image could not be generated. Please chec`k your code or inputs.")
