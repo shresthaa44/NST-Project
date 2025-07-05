@@ -168,7 +168,7 @@ class Vgg19(torch.nn.Module):
         super().__init__()
         vgg_pretrained_features = models.vgg19(pretrained=True, progress=show_progress).features
         if use_relu:  # use relu or as in original paper conv layers
-            self.layer_names = ['relu1_1', 'relu2_1', 'relu3_1', 'relu4_1', 'conv4_2', 'relu5_1']
+            self.layer_names = ['relu1_1', 'relu2_1', 'relu3_1', 'relu4_1', 'relu4_2', 'relu5_1']
             self.offset = 1
         else:
             self.layer_names = ['conv1_1', 'conv2_1', 'conv3_1', 'conv4_1', 'conv4_2', 'conv5_1']
@@ -194,7 +194,7 @@ class Vgg19(torch.nn.Module):
             self.slice4.add_module(str(x), vgg_pretrained_features[x])
         for x in range(20+self.offset, 22):
             self.slice5.add_module(str(x), vgg_pretrained_features[x])
-        for x in range(22, 29++self.offset):
+        for x in range(22, 29 + self.offset):
             self.slice6.add_module(str(x), vgg_pretrained_features[x])
         if not requires_grad:
             for param in self.parameters():
